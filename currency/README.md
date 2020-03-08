@@ -11,12 +11,12 @@
 
 ## 🐣 Introduction
 
-This project allows you to convert USD to Bitcoins with the current exchange rate.
+This project allows you to convert money with the current exchange rate (using an API).
 
 
 ## 💻 Installation
 
-After cloning the project run  the following commands in a CLI to install the library
+After cloning the project run the following commands in a CLI to install the library
 
 ```sh
 ❯ cd /path/to/workspace/3-musketeers/currency
@@ -26,10 +26,26 @@ After cloning the project run  the following commands in a CLI to install the li
 
 ## 🛠 Usage
 
-To execute the programm then simply run:
+To execute the programm simply run:
 
 ```sh
 ❯ node cli.js
 ```
+After a few seconds a result looking like the following will be displayed:
+
+```sh
+1 USD = 0.00011665630369835478 BTC
+```
+By default the conversion is USD to Bitcoins (BTC).
+
+However, you can search the exhange rate you want like for example by running:
+```sh
+❯ node cli.js 5 dkk eur
+```
+wich gives in output:
+```sh
+5 DKK = 0.6693709250000001 EUR
+```
+
 
 
