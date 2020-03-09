@@ -8,7 +8,7 @@ const CURRENCY_BITCOIN = 'BTC';
 const isAnyBTC = (from, to) => [from, to].includes(CURRENCY_BITCOIN); //we check if CURRENCY_BITCOIN is in the array
 
 module.exports = async opts => {
-  const {amount = 1, from = 'USD', to = CURRENCY_BITCOIN} = opts; //we set the  default parameters
+  const {amount = 1, from = 'USD', to = CURRENCY_BITCOIN} = opts; //we set the default parameters if they don't exist or import them from the opts parameter
   const promises = [];
   let base = from;
 

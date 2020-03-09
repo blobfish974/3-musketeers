@@ -1,4 +1,5 @@
 const nock = require('nock');
+const currency=require('./');
 
 beforeEach(() => {
   nock('https://api.exchangeratesapi.io')
@@ -41,56 +42,67 @@ beforeEach(() => {
 
 describe('currency', () => {
   test('should convert 1 USD to EUR', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 1, 'from': 'USD', 'to': 'EUR'});
+    expect(converted).toBe(0.899);
   });
 
   test('should convert 1 USD to USD', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 1, 'from': 'USD', 'to': 'USD'});
+    expect(converted).toBe(1);
   });
 
   test('should convert 1 EUR to USD', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 1, 'from': 'EUR', 'to': 'USD'});
+    expect(converted).toBe(1.1122);
   });
 
   test('should convert 1 BTC to USD', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 1, 'from': 'BTC', 'to': 'USD'});
+    expect(converted).toBe(8944.49);
   });
 
   test('should convert 1 BTC to EUR', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 1, 'from': 'BTC', 'to': 'EUR'});
+    expect(converted).toBe(8048.11);
   });
 
   test('should convert (with default values) without arguments', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({});
+    expect(converted).toBe(1/8944.49); // by default 1 USD TO BTC
+    //expect(index('')).toBeDefined()
   });
 
   test('should convert with amount only as argument', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+     const converted = await currency({'amount': 2}); // by default USD TO BTC
+    expect(converted).toBe(2/8944.49);
   });
 
   test('should convert with amount and (from) currency only as arguments', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    const converted = await currency({'amount': 3, 'from': 'EUR'}); // by default TO BTC
+    expect(converted).toBe(3/8048.11);
   });
 
   test('should return errors message for unknown `from` or `to` currency value', async () => {
-    throw new Error(
-      'test not yet defined... remove the throw and write your test here'
-    );
+    //expect( () => index('1 xxx uuu')).toThrow()
+     expect.assertions(1);
+    try {
+      await currency({'amount': 3, 'from': 'uuu', 'to': 'xxx'});
+    } catch (e) {
+      // expect(e).toThrow();
+      // expect(e).toThrow(Error);
+      // expect(e).toThrow(Error('💵 Please specify a valid `from` and/or `to` currency value!'));
+      // expect(e).toThrow(/Please/);
+      // expect(e).toThrowError();
+      expect(e).toStrictEqual(Error('💵 Please specify a valid `from` and/or `to` currency value!'));
+    }
+
   });
+
+//   describe('exception test', () => {
+//   it('should throw an exception', async() => {
+//     await expect(
+//     () => index('1 xxx uuu') // Do not simply call func
+//     ).toThrow()
+//   })
+// })
 });
