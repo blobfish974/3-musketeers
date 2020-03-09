@@ -38,11 +38,19 @@ After a few seconds a result looking like the following will be displayed:
 ```
 By default the conversion is USD to Bitcoins (BTC).
 
-However, you can search the exhange rate you want like for example by running:
+However, you can precise the exhange rate and amount as you want like !
+
+The command line is
+```sh
+❯ node cli.js <amount> <from currency> <to currency>
+``` 
+
+For example by running:
+
 ```sh
 ❯ node cli.js 5 dkk eur
 ```
-wich gives in output:
+you get the following output:
 ```sh
 5 DKK = 0.6693709250000001 EUR
 ```

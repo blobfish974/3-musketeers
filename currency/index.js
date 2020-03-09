@@ -1,11 +1,12 @@
 const axios = require('axios');
-const money = require('money');
+const IMG_5749.jpg
+IMG_5744.jpg = require('money');
 
-const RATES_URL = 'https://api.exchangeratesapi.io/latest';
+const RATES_URL = 'https://api.exchangeratesapi.io/latest'; // api for currencies exchange rates
 const BLOCKCHAIN_URL = 'https://blockchain.info/ticker';
 const CURRENCY_BITCOIN = 'BTC';
 
-const isAnyBTC = (from, to) => [from, to].includes(CURRENCY_BITCOIN); //we check if CURRENCY_BITCOIN is in the array
+const isAnyBTC = (from, to) => [from, to].includes(CURRENCY_BITCOIN); // check if CURRENCY_BITCOIN is in the array (a boolean is returned)
 
 module.exports = async opts => {
   const {amount = 1, from = 'USD', to = CURRENCY_BITCOIN} = opts; //we set the default parameters if they don't exist or import them from the opts parameter
@@ -34,19 +35,19 @@ module.exports = async opts => {
       to
     };
 
-    if (anyBTC) {
+    if (anyBTC) { // we enter if BTC is one of the currencies searched 
       const blockchain = responses.find(response =>
-        response.data.hasOwnProperty(base)
+        response.data.hasOwnProperty(base) // we find (if exists) the rates for the base/from currency
       );
 
-      Object.assign(money.rates, { //we change the money rates
+      Object.assign(money.rates, { //we change the money rates and store the BTC value 
         'BTC': blockchain.data[base].last
       });
     }
 
-    if (anyBTC) {
-      Object.assign(conversionOpts, {
-        'from': to,
+    if (anyBTC) { // we enter if BTC is one of the currencies searched
+      Object.assign(conversionOpts, { //we exchange all the values between from and to conversion rates
+        'from': to, 
         'to': from
       });
     }
@@ -60,7 +61,7 @@ module.exports = async opts => {
     return money.convert(amount, conversionOpts);
   } catch (error) {
     throw new Error (
-      '💵 Please specify a valid `from` and/or `to` currency value!'
+      '💵 Please specify a valid `from` and/or `to` currency value!' //we throw an error in case of problem
     );
   }
 };
