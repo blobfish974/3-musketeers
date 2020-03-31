@@ -5,8 +5,8 @@
 **Table of Contents**
 
 - [🐣 Introduction](#-introduction)
-- [💻 Installation](#-objectives)
-- [🛠 Usage](#%E2%80%8D-steps-to-do)
+- [💻 Installation](#-installation)
+- [🛠 Usage](#-usage)
 
 
 ## 🐣 Introduction
